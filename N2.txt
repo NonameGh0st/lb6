@@ -1,0 +1,115 @@
+#include <iostream>
+#include "windows.h"
+#include <iomanip>
+#include <string.h>
+#include <fstream>
+#include <vector>
+
+using namespace std;
+
+struct Competitions 
+{
+	char Surname[40], Name[40], Patronymic[40];
+	int Date_B_d, Date_B_m, Date_B_y;
+	char Sport[80];
+	int Result;
+	int Date_C_d, Date_C_m, Date_C_y;
+	int Record;
+};
+
+int main()
+{
+	int Date_C_d, Date_C_m, Date_C_y;
+	Competitions athlete[40];
+	const char *FName = "E:\Op\Lb12\Competitions.bin";
+	ifstream f1(FName, ios::binary | ios::in);
+	f1.read((char*)&athlete, sizeof(athlete));
+	f1.close();
+	int time_1 = 150, time_2 = 50;
+	
+	string s1 = "Competitions TAB\n";
+	string s1_2 = "Enter the number of athletes:\n-";
+	string s2 = "Please write Surname athlete N ";
+	string s2_2 = "Please write athlete Name\n-";
+	string s2_3 = "Please write athlete Patronymic\n-";
+	string s3 = "Please write athlete Date of birth\n-";
+	string s4 = "Please write athlete Kind of sport\n-";
+	string s5 = "Please write athlete Result\n-";
+	string s5_2 = "Winner\n-";
+	string s6 = "Please write Date of competitions\n-";
+	string s7 = "Please write athlete Record\n-";
+	int n;
+	do
+	{
+		for (unsigned int i = 0; i < s1.length(); i++)
+		{
+			Sleep(time_1);
+			cout << s1[i];
+		}
+
+		for (unsigned int i = 0; i < s1_2.length(); i++)
+		{
+			Sleep(time_2);
+			cout << s1_2[i];
+		}
+		cin >> n;
+	} while (n < 1 || n>50);
+
+	system("cls");
+
+	cout << "Competitions TAB\n";
+	for (unsigned int i = 0; i < s6.length(); i++)
+	{
+		Sleep(time_2);
+		cout << s6[i];
+	}
+
+	cin >> setw(2) >> Date_C_d;
+	cin.ignore();
+	cin >> setw(2) >> Date_C_m;
+	cin.ignore();
+	cin >> setw(4) >> Date_C_y;
+
+	system("cls");
+
+	cout << "Competitions TAB\n";
+	for (unsigned int i = 0; i < s4.length(); i++)
+	{
+		Sleep(time_2);
+		cout << s4[i];
+	}
+	char Sport_2[80];
+	cin >> Sport_2;
+
+	int k = 0, r;
+	for (int i = 0; i <= n; i++)
+	{
+		if ( Sport_2 == athlete[i].Sport)
+		{
+			if ( k < athlete[i].Result)
+			{
+					k = athlete[i].Result;
+					r = i;
+			}
+		}
+	}
+	for (unsigned int i = 0; i < s5_2.length(); i++)
+	{
+		Sleep(time_2);
+		cout << s5_2[i];
+	}
+	string Surname = string(Surname);
+	string Name = string(Name);
+	string Patronymic = string(Patronymic);
+	string Result = string(Result);
+	string Answer = Surname + Name + Patronymic + Result;
+
+	for (unsigned int i = 0; i < Answer.length(); i++)
+	{
+		Sleep(time_2);
+		cout << Answer[i];
+	}
+
+	cout << endl;
+	system("pause");
+}
