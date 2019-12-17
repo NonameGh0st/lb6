@@ -1,0 +1,160 @@
+#include "pch.h"
+#include <iostream>
+#include "windows.h"
+#include <iomanip>
+#include <string.h>
+#include <fstream>
+#include <vector>
+using namespace std;
+
+struct Competitions {
+	char Surname[40], Name[40], Patronymic[40];
+	int Date_B_d, Date_B_m, Date_B_y;
+	char Sport[80];
+	int Result;
+	int Date_C_d, Date_C_m, Date_C_y;
+	int Record;
+};
+
+int main()
+{
+	const char *FName = "E:\Op\Lb12\Competitions.bin";
+	int time_1 = 150, time_2 = 50;
+	
+	string s1 = "Competitions TAB\n";
+	string s1_2 = "Enter the number of athletes:\n-";
+	string s2 = "Please write Surname athlete N ";
+	string s2_2 = "Please write athlete Name\n-";
+	string s2_3 = "Please write athlete Patronymic\n-";
+	string s3 = "Please write athlete Date of birth\n-";
+	string s4 = "Please write athlete Kind of sport\n-";
+	string s5 = "Please write athlete Result\n-";
+	string s6 = "Please write Date of competitions\n-";
+	string s7 = "Please write athlete Record\n-";
+
+	int n;
+	do
+	{
+		for (unsigned int i = 0; i < s1.length(); i++)
+		{
+			Sleep(time_1);
+			cout << s1[i];
+		}
+
+		for (unsigned int i = 0; i < s1_2.length(); i++)
+		{
+			Sleep(time_2);
+			cout << s1_2[i];
+		}
+		cin >> n;
+	}
+	while (n < 1 || n>50);
+	//int *const N = &n;
+	system("cls");
+	Competitions athlete[40];
+	for (int i = 0; i <= n; i++)
+	{
+		cout << "Competitions TAB\n";
+		for (unsigned int i = 0; i < s2.length(); i++)
+		{
+			Sleep(time_2);
+			cout << s2[i];
+		}
+
+		cout << n << "\n-";
+
+		cin >> athlete[i].Surname;
+		
+		for (unsigned int i = 0; i < s2_2.length(); i++)
+		{
+			Sleep(time_2);
+			cout << s2_2[i];
+		}
+		
+		cin >> athlete[i].Name;
+		
+		for (unsigned int i = 0; i < s2_3.length(); i++)
+		{
+			Sleep(time_2);
+			cout << s2_3[i];
+		}
+
+		cin >> athlete[i].Patronymic;
+		
+		system("cls");
+
+		cout << "Competitions TAB\n";
+		for (unsigned int i = 0; i < s3.length(); i++)
+		{
+			Sleep(time_2);
+			cout << s3[i];
+		}
+
+		cin >> setw(2) >> athlete[i].Date_B_d;
+		cin.ignore();    
+		cin >> setw(2) >> athlete[i].Date_B_m;
+		cin.ignore();    
+		cin >> setw(4) >> athlete[i].Date_B_y;
+		system("cls");
+
+		cout << "Competitions TAB\n";
+		for (unsigned int i = 0; i < s4.length(); i++)
+		{
+			Sleep(time_2);
+			cout << s4[i];
+		}
+
+		cin >> athlete[i].Sport;
+		
+		system("cls");
+
+		cout << "Competitions TAB\n";
+		for (unsigned int i = 0; i < s5.length(); i++)
+		{
+			Sleep(time_2);
+			cout << s5[i];
+		}
+
+		cin >> athlete[i].Result;
+		
+		system("cls");
+
+		cout << "Competitions TAB\n";
+		for (unsigned int i = 0; i < s6.length(); i++)
+		{
+			Sleep(time_2);
+			cout << s6[i];
+		}
+
+		cin >> setw(2) >> athlete[i].Date_C_d;
+		cin.ignore();
+		cin >> setw(2) >> athlete[i].Date_C_m;
+		cin.ignore();
+		cin >> setw(4) >> athlete[i].Date_C_y;
+		
+		system("cls");
+
+		cout << "Competitions TAB\n";
+		for (unsigned int i = 0; i < s7.length(); i++)
+		{
+			Sleep(time_2);
+			cout << s7[i];
+		}
+
+		cin >> athlete[i].Record;
+	
+		system("cls");
+	}
+
+	ofstream f1 ( FName, ios::binary | ios::out);
+	f1.write((char*)&athlete, sizeof(athlete));
+	f1.close();
+	
+
+	
+
+
+
+	cout << endl;
+	system("pause");
+}
